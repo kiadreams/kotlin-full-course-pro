@@ -1,8 +1,8 @@
-package oop
+package oop.corporation
 
-class Assistant {
+class Assistant(name: String, age: Int = 0) : Worker(name = name, age = age) {
 
-    fun bringCoffee(count: Int, typeCoffee: String) {
+    fun bringCoffee(count: Int = 1, typeCoffee: String = "Cappuccino"): String {
         repeat(count) {
             println("Get up")
             println("Go to the coffee machine")
@@ -13,5 +13,6 @@ class Assistant {
             println("Put coffee on the table")
             println("Return to the workplace")
         }
+        return typeCoffee
     }
 }
