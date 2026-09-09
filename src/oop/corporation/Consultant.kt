@@ -18,4 +18,8 @@ class Consultant(
         }
         return customerCount
     }
+
+    override fun work() {
+        serveCustomers()
+    }
 }

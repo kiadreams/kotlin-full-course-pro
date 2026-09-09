@@ -14,4 +14,8 @@ class Director(
         println("The consultant ${consultant.name} served $customerCount customers.")
 
     }
+
+    override fun work() {
+        println("I'm drinking coffee...")
+    }
 }
