@@ -1,4 +1,4 @@
-package oop.corporation
+package corporation
 
 class Assistant(name: String, age: Int = 0) : Worker(name = name, age = age) {
 

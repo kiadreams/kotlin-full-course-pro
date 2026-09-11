@@ -1,4 +1,4 @@
-package oop.cats
+package cats
 
 class Lion(val countInPride: Int) : CatsFamily() {
 }

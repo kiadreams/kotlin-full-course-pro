@@ -1,4 +1,4 @@
-package oop.corporation
+package corporation
 
 open class ProductCard(
     val name: String,

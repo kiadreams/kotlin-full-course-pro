@@ -1,4 +1,4 @@
-package oop.corporation
+package corporation
 
 class Director(
     name: String,

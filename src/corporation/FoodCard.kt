@@ -1,14 +1,14 @@
-package oop.corporation
+package corporation
 
-class ApplianceCard(
+class FoodCard(
     name: String,
     brand: String,
     price: Int,
-    val wattage: Int
+    val caloric: Int
 ) : ProductCard(name, brand, price) {
 
     override fun printInfo() {
         super.printInfo()
-        println(", Wattage: $wattage")
+        println(", Caloric: $caloric")
     }
 }

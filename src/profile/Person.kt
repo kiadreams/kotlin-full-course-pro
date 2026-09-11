@@ -1,4 +1,4 @@
-package oop.profile
+package profile
 
 class Person {
     val name: String

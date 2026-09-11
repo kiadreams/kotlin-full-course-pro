@@ -1,4 +1,4 @@
-package oop.cats
+package cats
 
 fun main() {
     val cat = Cat("Sam")

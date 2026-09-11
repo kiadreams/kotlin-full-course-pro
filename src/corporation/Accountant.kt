@@ -1,16 +1,22 @@
-package oop.corporation
+package corporation
+
+import java.io.File
 
 class Accountant(
     name: String,
     age: Int
 ) : Worker(name, age) {
 
+
+    val items = mutableListOf<ProductCard>()
+    val file = File("product_cards.txt")
+
     override fun work() {
         val operationTypes = OperationType.entries
         while (true) {
             print("Enter the operation code. ")
             for ((index, operationType) in operationTypes.withIndex()) {
-                print("$index - ${operationType.operationName}")
+                print("$index - ${operationType.title}")
                 if (index < operationTypes.size - 1) {
                     print(", ")
                 } else {
@@ -21,7 +27,36 @@ class Accountant(
             when (operationType) {
                 OperationType.EXIT -> break
                 OperationType.REGISTER_PRODUCT -> registerNewItem()
+                OperationType.SHOW_ALL_ITEMS -> showAllItems()
             }
+        }
+    }
+
+    fun showAllItems() {
+        for (line in file.readLines()) {
+            val productData = line.trim().split("%")
+            val productType = ProductType.valueOf(productData.last())
+            val name = productData[0]
+            val brand = productData[1]
+            val price = productData[2].toInt()
+
+            val productCard = when (productType) {
+                ProductType.FOOD -> {
+                    val caloric = productData[3].toInt()
+                    FoodCard(name, brand, price, caloric)
+                }
+
+                ProductType.APPLIANCE -> {
+                    val wattage = productData[3].toInt()
+                    ApplianceCard(name, brand, price, wattage)
+                }
+
+                ProductType.SHOE -> {
+                    val size = productData[3].toFloat()
+                    ShoeCard(name, brand, price, size)
+                }
+            }
+            productCard.printInfo()
         }
     }
 
@@ -40,24 +75,32 @@ class Accountant(
         val productType = productTypes[productTypeIndex]
         print("\nEnter the product name: ")
         val name = readln()
+        file.appendText("$name%")
         print("\nEnter the brand: ")
         val brand = readln()
+        file.appendText("$brand%")
         print("\nEnter the price: ")
         val price = readln().toInt()
+        file.appendText("$price%")
         val productCard = when (productType) {
             ProductType.FOOD -> {
                 print("\nEnter the caloric: ")
-                FoodCard(name = name, brand = brand, price = price, caloric = readln().toInt())
+                val caloric = readln().toInt()
+                file.appendText("$caloric")
             }
+
             ProductType.APPLIANCE -> {
                 print("\nEnter the wattage: ")
-                ApplianceCard(name = name, brand = brand, price = price, wattage = readln().toInt())
+                val wattage = readln().toInt()
+                file.appendText("$wattage")
             }
+
             ProductType.SHOE -> {
                 print("\nEnter the size: ")
-                ShoeCard(name = name, brand = brand, price = price, size = readln().toFloat())
+                val size = readln().toInt()
+                file.appendText("$size")
             }
         }
-        productCard.printInfo()
+        file.appendText("%$productType\n")
     }
 }

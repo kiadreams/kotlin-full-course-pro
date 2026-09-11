@@ -1,4 +1,4 @@
-package oop.corporation
+package corporation
 
 import kotlin.random.Random
 

@@ -1,14 +1,14 @@
-package oop.corporation
+package corporation
 
-class ShoeCard(
+class ApplianceCard(
     name: String,
     brand: String,
     price: Int,
-    val size: Float
+    val wattage: Int
 ) : ProductCard(name, brand, price) {
 
     override fun printInfo() {
         super.printInfo()
-        println(", Size: $size")
+        println(", Wattage: $wattage")
     }
 }

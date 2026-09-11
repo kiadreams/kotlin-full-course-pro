@@ -1,4 +1,4 @@
-package oop.profile
+package profile
 
 fun main() {
 
