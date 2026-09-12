@@ -1,2 +1,0 @@
-Chips%Lays%10%135%FOOD
-Sneakers%Nike%100%24%SHOE
