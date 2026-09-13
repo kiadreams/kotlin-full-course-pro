@@ -1,6 +1,10 @@
 package corporation
 
-class Assistant(name: String, age: Int = 0) : Worker(name = name, age = age) {
+class Assistant(
+    id: Int,
+    name: String,
+    age: Int = 0
+) : Worker(id = id, name = name, age = age, position = EmployeePosition.ASSISTANT) {
 
     fun bringCoffee(count: Int = 1, typeCoffee: String = "Cappuccino"): String {
         repeat(count) {
