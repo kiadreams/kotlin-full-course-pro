@@ -6,7 +6,12 @@ class Consultant(
     id: Int,
     name: String,
     age: Int = 0
-) : Worker(id = id, name = name, age = age, position = EmployeePosition.CONSULTANT) {
+) : Worker(
+    id = id,
+    name = name,
+    age = age,
+    position = EmployeePosition.CONSULTANT
+), Cleaner {
     fun sayHello() {
         print("Привет! Меня зовут $name.")
         if (age > 0) println(" Мне $age лет.")
@@ -22,5 +27,9 @@ class Consultant(
 
     override fun work() {
         serveCustomers()
+    }
+
+    override fun clean() {
+        println("My position is ${position.title}. I'm cleaning workplace...")
     }
 }

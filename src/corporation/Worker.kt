@@ -1,17 +1,19 @@
 package corporation
 
-open class Worker(
+abstract class Worker(
     val id: Int,
     val name: String,
     val age: Int = 0,
     val position: EmployeePosition
 ) {
 
-    open fun work() {
-        println("I'm working now...")
-    }
+    abstract fun work()
 
     fun printInfo() {
-        print("Id: $id, Name: $name, Age: $age, Position: ${position.title}\n")
+        print(this)
+    }
+
+    override fun toString(): String {
+        return "Id: $id, Name: $name, Age: $age, Position: ${position.title}\n"
     }
 }
