@@ -1,8 +1,27 @@
 package profile
 
 class Person(
-    val name: String, val age: Int, val height: Int, val weight: Int
+    private val name: String,
+    var lastName: String,
+    private val height: Int,
+    private val weight: Int
 ) {
+
+    val fullName: String
+        get() = "$name $lastName"
+
+    var age: Int = 0
+        set(value) {
+            if (value > field) {
+                field = value
+            } else {
+                println("The new age must be great")
+            }
+        }
+        get() {
+            println("Спрашивать о возрасте не прилично")
+            return field
+        }
 
     fun sayHello() {
         println("Hello, my name is $name")

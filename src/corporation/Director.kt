@@ -3,11 +3,13 @@ package corporation
 class Director(
     id: Int,
     name: String,
-    age: Int
+    age: Int,
+    salary: Int,
 ) : Worker(
     id = id,
     name = name,
     age = age,
+    salary = salary,
     position = EmployeePosition.DIRECTOR
 ), Supplier {
     fun takeCoffee(assistant: Assistant) {

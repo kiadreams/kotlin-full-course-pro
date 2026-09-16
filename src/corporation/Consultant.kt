@@ -5,11 +5,13 @@ import kotlin.random.Random
 class Consultant(
     id: Int,
     name: String,
-    age: Int = 0
+    age: Int = 0,
+    salary: Int = 0,
 ) : Worker(
     id = id,
     name = name,
     age = age,
+    salary = salary,
     position = EmployeePosition.CONSULTANT
 ), Cleaner {
     fun sayHello() {

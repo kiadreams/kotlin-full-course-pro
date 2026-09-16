@@ -3,11 +3,13 @@ package corporation
 class Assistant(
     id: Int,
     name: String,
-    age: Int = 0
+    age: Int,
+    salary: Int,
 ) : Worker(
     id = id,
     name = name,
     age = age,
+    salary = salary,
     position = EmployeePosition.ASSISTANT
 ), Cleaner, Supplier {
 
