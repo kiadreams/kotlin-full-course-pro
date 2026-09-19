@@ -3,12 +3,13 @@ package corporation
 import java.io.File
 
 
-class WorkersRepository {
+object WorkersRepository {
 
     private val fileWorkers = File("workers.txt")
     val workers = loadAllEmployees()
 
     private fun loadAllEmployees(): MutableList<Worker> {
+        println("Loading all employees...")
         val employees = mutableListOf<Worker>()
         if (!fileWorkers.exists()) fileWorkers.createNewFile()
         for (line in fileWorkers.readLines()) {
