@@ -39,6 +39,7 @@ class Accountant(
                 OperationType.FIRE_AN_EMPLOYEE -> fireAnEmployee()
                 OperationType.SHOW_ALL_EMPLOYEES -> showAllEmployees()
                 OperationType.CHANGE_SALARY -> changeSalary()
+                OperationType.CHANGE_AGE -> changeAge()
             }
         }
     }
@@ -48,6 +49,10 @@ class Accountant(
         for (card in cards) {
             card.printInfo()
         }
+    }
+
+    override fun copy(salary: Int, age: Int): Accountant {
+        return Accountant(this.id, this.name, age, salary)
     }
 
     private fun removeProductCard() {
@@ -145,6 +150,14 @@ class Accountant(
         print("Enter new salary: ")
         val newSalary = readln().toInt()
         workersRepository.changeSalary(id, newSalary)
+    }
+
+    private fun changeAge() {
+        print("Enter employee's id to change age: ")
+        val id = readln().toInt()
+        print("Enter new age: ")
+        val newAge = readln().toInt()
+        workersRepository.changeAge(id, newAge)
     }
 
     override fun clean() {

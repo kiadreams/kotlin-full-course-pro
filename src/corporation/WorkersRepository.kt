@@ -6,7 +6,9 @@ import java.io.File
 object WorkersRepository {
 
     private val fileWorkers = File("workers.txt")
-    val workers = loadAllEmployees()
+    private val _workers: MutableList<Worker> = loadAllEmployees()
+    val workers
+        get() = _workers.toList()
 
     private fun loadAllEmployees(): MutableList<Worker> {
         println("Loading all employees...")
@@ -31,25 +33,40 @@ object WorkersRepository {
     }
 
     fun fireAnEmployee(id: Int) {
-        workers.removeIf { it.id == id }
+        _workers.removeIf { it.id == id }
     }
 
     fun registerNewEmployee(employee: Worker) {
-        workers.add(employee)
+        for (worker in _workers) {
+            if (worker == employee) {
+                return
+            }
+        }
+        _workers.add(employee)
     }
 
     fun changeSalary(id: Int, newSalary: Int) {
-        workers.forEach {
-            if (it.id == id) {
-                it.setSalary(newSalary)
+        for ((index, worker) in _workers.withIndex()) {
+            if (worker.id == id) {
+                val newWorker = worker.copy(salary = newSalary)
+                _workers[index] = newWorker
+            }
+        }
+    }
+
+    fun changeAge(id: Int, newAge: Int) {
+        for ((index, worker) in _workers.withIndex()) {
+            if (worker.id == id) {
+                val newWorker = worker.copy(age = newAge)
+                _workers[index] = newWorker
             }
         }
     }
 
     fun saveChanges() {
         val content = StringBuilder()
-        workers.forEach {
-            val workerAsText = "${it.id}%${it.name}%${it.age}%${it.getSalary()}%${it.position}\n"
+        _workers.forEach {
+            val workerAsText = "${it.id}%${it.name}%${it.age}%${it.salary}%${it.position}\n"
             content.append(workerAsText)
         }
         fileWorkers.writeText(content.toString())

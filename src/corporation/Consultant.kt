@@ -27,6 +27,10 @@ class Consultant(
         return customerCount
     }
 
+    override fun copy(salary: Int, age: Int): Consultant {
+        return Consultant(this.id, this.name, age, salary)
+    }
+
     override fun work() {
         serveCustomers()
     }
