@@ -7,5 +7,4 @@ fun main() {
     for (worker in workers) {
         worker.work()
     }
-    val a: Any = 1
 }

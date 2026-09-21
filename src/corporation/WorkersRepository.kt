@@ -6,13 +6,13 @@ import java.io.File
 object WorkersRepository {
 
     private val fileWorkers = File("workers.txt")
-    private val _workers: MutableList<Worker> = loadAllEmployees()
+    private val _workers = loadAllEmployees()
     val workers
         get() = _workers.toList()
 
-    private fun loadAllEmployees(): MutableList<Worker> {
+    private fun loadAllEmployees(): MutableSet<Worker> {
         println("Loading all employees...")
-        val employees = mutableListOf<Worker>()
+        val employees = mutableSetOf<Worker>()
         if (!fileWorkers.exists()) fileWorkers.createNewFile()
         for (line in fileWorkers.readLines()) {
             val employeeData = line.trim().split("%")
@@ -37,28 +37,27 @@ object WorkersRepository {
     }
 
     fun registerNewEmployee(employee: Worker) {
-        for (worker in _workers) {
-            if (worker == employee) {
-                return
-            }
-        }
         _workers.add(employee)
     }
 
     fun changeSalary(id: Int, newSalary: Int) {
-        for ((index, worker) in _workers.withIndex()) {
+        for (worker in _workers) {
             if (worker.id == id) {
                 val newWorker = worker.copy(salary = newSalary)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
 
     fun changeAge(id: Int, newAge: Int) {
-        for ((index, worker) in _workers.withIndex()) {
+        for (worker in _workers) {
             if (worker.id == id) {
                 val newWorker = worker.copy(age = newAge)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }

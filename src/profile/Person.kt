@@ -1,10 +1,10 @@
 package profile
 
-class Person(
-    private val name: String,
-    var lastName: String,
-    private val height: Int,
-    private val weight: Int
+data class Person(
+    val name: String,
+    val lastName: String,
+    val height: Int,
+    val weight: Int
 ) {
 
     val fullName: String
@@ -19,7 +19,7 @@ class Person(
             }
         }
         get() {
-            println("Спрашивать о возрасте не прилично")
+            println("It is indecent to ask a person his age")
             return field
         }
 
@@ -37,5 +37,4 @@ class Person(
         }
         print("\n")
     }
-
 }

@@ -11,8 +11,8 @@ object ProductsRepository {
         get() = _productCards.toList()
 
 
-    fun loadAllCards(): MutableList<ProductCard> {
-        val cards = mutableListOf<ProductCard>()
+    fun loadAllCards(): MutableSet<ProductCard> {
+        val cards = mutableSetOf<ProductCard>()
         if (!fileProductCards.exists()) fileProductCards.createNewFile()
         for (line in fileProductCards.readLines()) {
             val productData = line.trim().split("%")
@@ -54,11 +54,11 @@ object ProductsRepository {
         for (card in _productCards) {
             content.append("${card.name}%${card.brand}%${card.price}%")
             when (card) {
-                is FoodCard -> fileProductCards.appendText("${card.caloric}%")
-                is ApplianceCard -> fileProductCards.appendText("${card.wattage}%")
-                is ShoeCard -> fileProductCards.appendText("${card.size}%")
+                is FoodCard -> content.append("${card.caloric}%")
+                is ApplianceCard -> content.append("${card.wattage}%")
+                is ShoeCard -> content.append("${card.size}%")
             }
-            fileProductCards.appendText("${card.productType}\n")
+            content.append("${card.productType}\n")
         }
         fileProductCards.writeText(content.toString())
     }
