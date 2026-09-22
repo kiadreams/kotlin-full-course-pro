@@ -51,8 +51,14 @@ data class Accountant(
         }
     }
 
-    override fun copy(salary: Int, age: Int): Accountant {
-        return Accountant(this.id, this.name, age, salary)
+    override fun copy(
+        id: Int,
+        name: String,
+        age: Int,
+        salary: Int,
+        position: EmployeePosition
+    ): Worker {
+        return copy(id = id, name = name, age = age, salary = salary)
     }
 
     private fun removeProductCard() {

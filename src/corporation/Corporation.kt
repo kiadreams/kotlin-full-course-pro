@@ -2,9 +2,10 @@ package corporation
 
 
 fun main() {
-    val workersRepository = WorkersRepository
-    val workers = workersRepository.workers
-    for (worker in workers) {
-        worker.work()
-    }
+    val director = WorkersRepository.findDirector() ?: throwDirectorIsRequired()
+    director.printInfo()
+}
+
+fun throwDirectorIsRequired(): Nothing {
+    throw Exception("Director is required fot this program. Please add it to the file workers.txt")
 }

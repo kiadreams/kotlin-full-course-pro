@@ -27,6 +27,7 @@ data class Assistant(
         return typeCoffee
     }
 
+
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
     }
@@ -35,8 +36,14 @@ data class Assistant(
         println("My position is ${position.title}. I'm buying things...")
     }
 
-    override fun copy(salary: Int, age: Int): Assistant {
-        return Assistant(this.id, this.name, age, salary)
+    override fun copy(
+        id: Int,
+        name: String,
+        age: Int,
+        salary: Int,
+        position: EmployeePosition
+    ): Worker {
+        return copy(id = id, name = name, age = age, salary = salary)
     }
 
     override fun work() {

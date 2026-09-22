@@ -40,6 +40,16 @@ object WorkersRepository {
         _workers.add(employee)
     }
 
+    fun findAssistant(): Assistant? {
+        val worker = _workers.find { it is Assistant }
+        return worker as? Assistant
+    }
+
+    fun findDirector(): Director? {
+        val worker = _workers.find { it is Director }
+        return worker as? Director
+    }
+
     fun changeSalary(id: Int, newSalary: Int) {
         for (worker in _workers) {
             if (worker.id == id) {

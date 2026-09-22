@@ -27,8 +27,14 @@ data class Consultant(
         return customerCount
     }
 
-    override fun copy(salary: Int, age: Int): Consultant {
-        return Consultant(this.id, this.name, age, salary)
+    override fun copy(
+        id: Int,
+        name: String,
+        age: Int,
+        salary: Int,
+        position: EmployeePosition
+    ): Worker {
+        return copy(id = id, name = name, age = age, salary = salary)
     }
 
     override fun work() {
