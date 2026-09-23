@@ -7,5 +7,5 @@ fun main() {
 }
 
 fun throwDirectorIsRequired(): Nothing {
-    throw Exception("Director is required fot this program. Please add it to the file workers.txt")
+    throw IllegalStateException("Director is required fot this program. Please add it to the file workers.txt")
 }
